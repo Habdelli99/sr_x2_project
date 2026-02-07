@@ -1,0 +1,20 @@
+project: sr_x2_fsrcnn
+
+data_root: data/div2k_x2
+scale: 2
+
+train_size: 256        # HR crop size
+batch_size: 8
+epochs: 8
+lr: 0.0001
+
+model: fsrcnn
+loss: l1
+
+val_metric: ssim       # ou psnr, mais au moins 1 metric
+mixed_precision: false # mets true seulement si CUDA ok
+
+num_workers: 0         # Windows safe
+seed: 42
+
+exp_name: div2k_x2_fsrcnn_baseline

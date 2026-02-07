@@ -1,0 +1,22 @@
+﻿.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# datasets (souvent trop gros)
+data/
+
+# runs/weights (à adapter)
+runs/
+src/runs/
+*.pt
+*.onnx
+
+# exports
+*.mp4
+*.zip
