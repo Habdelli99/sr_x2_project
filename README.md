@@ -1,82 +1,75 @@
-@"
-# sr_x2_project — Super-Resolution x2 (FSRCNN)
+# SR ×2 — Real-Time Super-Resolution with FSRCNN (PyTorch / ONNX)
 
-Real-time and offline super-resolution (×2) using FSRCNN.  
-Includes training, evaluation (PSNR/SSIM), live webcam demo, and optional ONNX export + benchmark.
+Super-resolution ×2 using FSRCNN with:
+- Training on DIV2K
+- PSNR / SSIM evaluation
+- Real-time webcam demo
+- ONNX export and FPS benchmark
 
-## Project structure
-- `src/train.py` — training loop
-- `src/eval.py` — evaluation (PSNR/SSIM)
-- `src/demo_live_split.py` — real-time demo (original vs SR)
-- `src/models/fsrcnn.py` — FSRCNN model
-- `src/datasets/` — DIV2K loader + prep scripts
-- `src/scripts/export_onnx.py` — export to ONNX
-- `src/scripts/test_onnx.py` — ONNX inference benchmark
-- `src/configs/sr_x2_fsrcnn.yaml` — experiment config
+---
 
-## Setup
+## 📁 Project Structure
+
+src/
+├─ train.py # Training loop
+├─ eval.py # PSNR / SSIM evaluation
+├─ demo_live_split.py # Real-time demo (Original vs SR)
+├─ models/fsrcnn.py # FSRCNN architecture
+├─ datasets/ # DIV2K loader & preparation
+├─ scripts/export_onnx.py # ONNX export
+├─ scripts/test_onnx.py # ONNX inference benchmark
+└─ configs/sr_x2_fsrcnn.yaml # Experiment configuration
+
+
+---
+
+## ⚙️ Setup
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 
-src/
-├─ train.py
-├─ eval.py
-├─ demo_live_split.py
-├─ models/fsrcnn.py
-├─ datasets/
-├─ scripts/export_onnx.py
-└─ configs/sr_x2_fsrcnn.yaml
-
-## Setup
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install torch torchvision opencv-python pyyaml onnxruntime
-Train
+🚀 Training
 python -m src.train --config src/configs/sr_x2_fsrcnn.yaml
-Evaluate
+
+📊 Evaluation (PSNR / SSIM)
 python -m src.eval --weights src/runs/<exp_name>/best.pt
-Real-time demo
+
+🎥 Real-Time Demo
+
 python -m src.demo_live_split --weights src/runs/<exp_name>/best.pt --size 192 --camera usb
-ONNX benchmark
+
+
+⚡ ONNX Benchmark
+
 python -m src.scripts.export_onnx --weights src/runs/<exp_name>/best.pt
 python -m src.scripts.test_onnx
-data/, .venv/, runs/ and weights are excluded from git.
 
-
-Enregistre.
-
+📝 Notes
+data/, .venv/, runs/, model weights and outputs are intentionally excluded from Git.
+Designed for GPU inference and Edge-AI performance testing.
 ---
 
-## 2) Ajoute `requirements.txt`
+### ✅ requirements.txt
 
-```powershell
-notepad requirements.txt
-Colle :
 
-torch
+orch
 torchvision
 opencv-python
 numpy
 pyyaml
 onnx
 onnxruntime
-3) Commit & push
+
+
+---
+
+### ✅ Ensuite
+
+```bash
 git add README.md requirements.txt
-git commit -m "Add README and requirements"
+git commit -m "Add clean README and requirements"
 git push
-4) Résultat attendu sur GitHub
-Recharge la page :
-Le README s’affiche → ton repo devient immédiatement compréhensible.
 
-5) Étape suivante (qui fait passer de “TP” à “Edge-AI project”)
-Après ça, on ajoute :
 
-une section Results (PSNR / SSIM / FPS 256 vs 192 vs 128)
-
-2 screenshots du demo
-
-un tableau perf PyTorch vs ONNX
